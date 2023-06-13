@@ -14,5 +14,5 @@ public class CellController : MonoBehaviour
 
     public bool occupied;
     
-    public TileObject linkedTile;
+    public TileController linkedTile;
 }

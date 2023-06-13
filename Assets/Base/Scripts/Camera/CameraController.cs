@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using GameAnalyticsSDK.Setup;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour

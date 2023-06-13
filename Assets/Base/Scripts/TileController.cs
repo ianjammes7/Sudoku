@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class TileController : TileObject
+public class TileController : MonoBehaviour
 {
     public Renderer cubeMeshRenderer;
-    public int colorId;
+    public CellController cellParent;
 
-    private void Start()
+    public TextMeshPro numberTile;
+
+    public void SetNumber()
     {
-
+        int randomInt = Random.Range(1, 9);
+        numberTile.text = randomInt.ToString();
     }
 }

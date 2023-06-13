@@ -29,28 +29,9 @@ public class SceneContextManager : MonoBehaviour
             _gameManager = value;
         }
     }
-    // Start is called before the first frame update
+
     virtual protected void Start()
     {
-        print("ttt");
         gameManager.currentSceneManager = this;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    virtual public void OnSuccess()
-    {
-        TinySauce.OnGameFinished(isVictory, 0f);
-        //MMVibrationManager.Haptic(HapticTypes.Success);
-    }
-
-    virtual public void OnGameOver()
-    {
-        //MMVibrationManager.Haptic(HapticTypes.Failure);
-        TinySauce.OnGameFinished(isVictory, 0f);
     }
 }

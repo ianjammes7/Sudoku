@@ -27,12 +27,13 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
+            return;
         }
         
         Application.targetFrameRate = 60;
-        
-        _currentLevel = SaveManager.GetCurrentLevel();
-        levelToPlay = SaveManager.GetLevelToPlay();
+
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+
     }
 
     public static GameManager Instance {
@@ -42,26 +43,6 @@ public class GameManager : MonoBehaviour
             }
             return _instance;
         }
-    }
-    
-    void Update()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            currentSceneManager.OnSuccess();
-        }
-            
-        if (Input.GetKeyDown("d"))
-        {
-            currentSceneManager.OnGameOver();
-        }
-        
-#if UNITY_EDITOR
-        if (Input.GetKeyDown("p")) 
-        { 
-            EditorApplication.isPaused = true;
-        }
-#endif
     }
 
     

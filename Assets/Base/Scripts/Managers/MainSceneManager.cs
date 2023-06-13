@@ -19,7 +19,6 @@ public class MainSceneManager : SceneContextManager
             if (gameManager.levelToPlay > levelCount - 1)
             {
                 gameManager.levelToPlay = 0;
-                SaveManager.SetLevelToPlay(gameManager.levelToPlay);
             }
         }
 
@@ -40,10 +39,9 @@ public class MainSceneManager : SceneContextManager
         gameHasStarted = true;
         _GridController.Init();
         _cameraController.Init();
-
-        TinySauce.OnGameStarted(levelNumber:gameManager._currentLevel.ToString());
     }
-    override public void OnSuccess()
+
+    public void OnSuccess()
     {
         if (uiManager.GameUI != null)
             uiManager.GameUI.SetActive(false);
@@ -52,13 +50,9 @@ public class MainSceneManager : SceneContextManager
 
         gameHasStarted = false;
         isVictory = true;
-
-        base.OnSuccess();
-        //TinySauce.OnGameFinished(isVictory,totalFruits,levelNumber:_currentLevel.ToString());
-        //MMVibrationManager.Haptic(HapticTypes.Success);
     }
 
-    override public void OnGameOver()
+    public void OnGameOver()
     {
         if (uiManager.GameUI != null)
             uiManager.GameUI.SetActive(false);
@@ -67,9 +61,5 @@ public class MainSceneManager : SceneContextManager
 
         gameHasStarted = false;
         isVictory = false;
-
-        base.OnGameOver();
-        //MMVibrationManager.Haptic(HapticTypes.Failure);
-        //TinySauce.OnGameFinished(isVictory,totalFruits,levelNumber:_currentLevel.ToString());
     }
 }
