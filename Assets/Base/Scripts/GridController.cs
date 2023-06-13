@@ -38,6 +38,8 @@ public class GridController : MonoBehaviour
         }
     }
 
+    private int selected_grid_data = -1;
+
     public void Init()
     {
         //Defining size for levels
@@ -49,14 +51,14 @@ public class GridController : MonoBehaviour
         transform.position = new Vector3(-((gridSize.x - 1) / 2f), 0f, -((gridSize.y - 1) / 2f));
 
         CreateGrid();
+        SetGridNumber(GameManager.Instance.gameModeString);
     }
 
     public void CreateGrid(String gridLayout = "none")
     {
-
-        for (int x = 0; x < gridSize.x; x++)
+        for (int y = gridSize.y; y > 0; y--)
         {
-            for (int y = 0; y < gridSize.y; y++)
+            for (int x = 0; x < gridSize.x; x++)
             {
                 CellController newCell = Instantiate(cellPrefab, this.transform);
                 newCell.pos = new Vector2Int(x, y);
@@ -67,39 +69,6 @@ public class GridController : MonoBehaviour
                 AddTileToCell(newCell);
             }
         }
-
-        UpdateNeigbours();
-    }
-    public void UpdateNeigbours(bool diagonal = false)
-    {
-        for (int x = 0; x < gridSize.x; x++)
-        {
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                CellController currentCell = cells[(x + "," + y)];
-
-                if (x > 0)
-                    currentCell.connectedCells.Add(cells[(x - 1) + "," + y]);
-                if (x < gridSize.x - 1)
-                    currentCell.connectedCells.Add(cells[(x + 1) + "," + y]);
-                if (y > 0)
-                    currentCell.connectedCells.Add(cells[x + "," + (y - 1)]);
-                if (y < gridSize.y - 1)
-                    currentCell.connectedCells.Add(cells[x + "," + (y + 1)]);
-
-                if (diagonal)
-                {
-                    if (x > 0 && y > 0)
-                        currentCell.diagonalConnected.Add(cells[(x - 1) + "," + (y - 1)]);
-                    if (x < gridSize.x - 1 && y < gridSize.y - 1)
-                        currentCell.diagonalConnected.Add(cells[(x + 1) + "," + (y + 1)]);
-                    if (x > 0 && y < gridSize.y - 1)
-                        currentCell.diagonalConnected.Add(cells[(x - 1) + "," + (y + 1)]);
-                    if (x < gridSize.x - 1 && y > 0)
-                        currentCell.diagonalConnected.Add(cells[(x + 1) + "," + (y - 1)]);
-                }
-            }
-        }
     }
 
     public TileController AddTileToCell(CellController cell)
@@ -108,7 +77,6 @@ public class GridController : MonoBehaviour
         TileController newTile = Instantiate(tilePrefab, transform);
         newTile.transform.localPosition = newPos;
         listTiles.Add(newTile);
-        newTile.SetNumber();
 
         cell.linkedTile = newTile;
         cell.occupied = true;
@@ -117,14 +85,19 @@ public class GridController : MonoBehaviour
         return newTile;
     }
 
-    public void DestroyTileAt(CellController cell)
+    public void SetGridNumber(string level)
     {
-        if (cell.linkedTile != null)
+        selected_grid_data = Random.Range(0, SudokuData.Instance.sudoku_game[level].Count);
+        var data = SudokuData.Instance.sudoku_game[level][selected_grid_data];
+
+        SetGridSquareData(data);
+    }
+
+    private void SetGridSquareData(SudokuData.SudokuBoardData data)
+    {
+        for (int i = 0; i < mainSceneManager._GridController.listTiles.Count; i++)
         {
-            listTiles.Remove(cell.linkedTile);
-            Destroy(cell.linkedTile.gameObject);
-            cell.linkedTile = null;
-            cell.occupied = false;
+            mainSceneManager._GridController.listTiles[i].SetNumber(data.unsolved_Data[i]);
         }
     }
 }

@@ -6,14 +6,39 @@ using Random = UnityEngine.Random;
 
 public class TileController : MonoBehaviour
 {
-    public Renderer cubeMeshRenderer;
+    private MainSceneManager _mainSceneManager;
+    protected MainSceneManager mainSceneManager
+    {
+        get
+        {
+            if (_mainSceneManager != null)
+            {
+                return _mainSceneManager;
+            }
+            else
+            {
+                _mainSceneManager = GameManager.Instance.currentSceneManager as MainSceneManager;
+            }
+            return _mainSceneManager;
+        }
+
+        set
+        {
+            _mainSceneManager = value;
+        }
+    }
+
+    //public Renderer cubeMeshRenderer;
     public CellController cellParent;
 
     public TextMeshPro numberTile;
 
-    public void SetNumber()
+    public void SetNumber(int num)
     {
-        int randomInt = Random.Range(1, 9);
-        numberTile.text = randomInt.ToString();
+        numberTile.text = num.ToString();
+        if(num == 0)
+        {
+            numberTile.text = " ";
+        }
     }
 }

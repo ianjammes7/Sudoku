@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
 
     public SceneContextManager currentSceneManager;
 
+    [Header("Game Modes")]
+    [HideInInspector] public GAME_MODE _GameMode;
+    [HideInInspector] public string gameModeString;
+
     //Level
     public LevelManager _LevelManager;
     public int _currentLevel;
@@ -32,6 +36,8 @@ public class GameManager : MonoBehaviour
         
         Application.targetFrameRate = 60;
 
+        _GameMode = GAME_MODE.NOT_SET;
+
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
 
     }
@@ -44,6 +50,12 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
+}
 
-    
+public enum GAME_MODE
+{
+    NOT_SET,
+    EASY,
+    MEDIUM,
+    HARD
 }
