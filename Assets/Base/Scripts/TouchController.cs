@@ -46,14 +46,14 @@ public class TouchController : MonoBehaviour
 
     void OnFingerDown(LeanFinger finger)
     {
-        if (mainSceneManager.isVictory || mainSceneManager.gameHasStarted == false) return;
+        if (mainSceneManager.isVictory || mainSceneManager.gameHasStarted == false || mainSceneManager.pausedGame) return;
 
         Ray raycast = Camera.main.ScreenPointToRay(finger.ScreenPosition);
         RaycastHit raycastHit;
 
         if (Physics.Raycast(raycast, out raycastHit))
         {
-            if (raycastHit.collider.gameObject.layer == 6) //tile
+            if (raycastHit.collider.gameObject.layer == 6) //clicking on a tile
             {
                 if (touchedTile != null) //Storing last touched tile
                     lastTouchedTile = touchedTile;

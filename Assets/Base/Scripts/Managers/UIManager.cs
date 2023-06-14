@@ -61,24 +61,14 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI timeGameUIText;
     public TextMeshProUGUI scoreGameUIText;
 
+    [Header("Pause UI Vars")]
+    public GameObject PauseUI;
+    public TextMeshProUGUI timePauseUIText;
+
     [Header("Success Screen Vars")]
     public TextMeshProUGUI difficultyText;
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI scoreText;
-
-    void Update()
-    {
-        if (Input.GetKeyDown("h"))
-        {
-            if (GameUI != null)
-            {
-                if (GameUI.transform.GetChild(0).gameObject.activeSelf)
-                    GameUI.transform.GetChild(0).gameObject.SetActive(false);
-                else
-                    GameUI.transform.GetChild(0).gameObject.SetActive(true);
-            }
-        }
-    }
 
     public void OnStartButtonClicked()
     {
@@ -93,11 +83,24 @@ public class UIManager : MonoBehaviour
         gameManager.levelToPlay++;
         PlayerPrefs.SetInt("LevelToPlay", gameManager.levelToPlay);
 
-        SceneManager.LoadScene("Main", LoadSceneMode.Single);
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 
-    public void OnRetryButtonClicked()
+    public void OnExitButtonClicked()
     {
-        SceneManager.LoadScene("Main", LoadSceneMode.Single);
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+    }
+
+    public void OnPauseButtonClicked()
+    {
+        mainSceneManager.pausedGame = true;
+        mainSceneManager._Timer.DisplayTime(mainSceneManager._Timer.timeValue, timePauseUIText);
+        PauseUI.SetActive(true);
+    }
+
+    public void OnResumeButtonClicked()
+    {
+        mainSceneManager.pausedGame = false;
+        PauseUI.SetActive(false);
     }
 }

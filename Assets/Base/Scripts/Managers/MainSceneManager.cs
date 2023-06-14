@@ -10,6 +10,9 @@ public class MainSceneManager : SceneContextManager
     public UIManager uiManager;
     public TouchController _touchController;
     public SolutionController _solutionController;
+    public Timer _Timer;
+
+    [HideInInspector] public bool pausedGame = false;
 
     void Start()
     {
@@ -43,6 +46,14 @@ public class MainSceneManager : SceneContextManager
         _cameraController.Init();
 
         uiManager.difficultyGameUIText.text = gameManager.gameModeString.ToString();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            OnSuccess();
+        }
     }
 
     public void OnSuccess()

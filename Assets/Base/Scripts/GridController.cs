@@ -53,28 +53,50 @@ public class GridController : MonoBehaviour
         SetGridNumber(GameManager.Instance.gameModeString);
     }
 
+    public float squareGap = 0.1f;
+
     public void CreateGrid(String gridLayout = "none")
     {
+        Vector2 gap_number = new Vector2(0,1);
+        bool rowMoved = false;
+            
         for (int y = gridSize.y; y > 0; y--)
         {
             for (int x = 0; x < gridSize.x; x++)
             {
                 CellController newCell = Instantiate(cellPrefab, this.transform);
                 newCell.pos = new Vector2Int(x, y);
-                Vector3 newPos = new Vector3(newCell.pos.x, newCell.pos.y, 0f);
+                Vector3 newPos = new Vector3(newCell.pos.x + (gap_number.x * squareGap), newCell.pos.y - (gap_number.y * squareGap), 0f);
+
+                if(x > 0 && x%3 == 0)
+                {
+                    gap_number.x++;
+                    newPos.x += squareGap;
+                }
+
+                if (y > 0 && y % 3 == 0 && rowMoved == false)
+                {
+                    rowMoved = true;
+                    gap_number.y++;
+                    newPos.y -= squareGap;
+                }
+
                 newCell.transform.localPosition = newPos;
                 cells.Add((x + "," + y), newCell);
 
                 AddTileToCell(newCell);
             }
+
+            gap_number.x = 0;
+            rowMoved = false;
         }
     }
 
-    public TileController AddTileToCell(CellController cell)
+    public TileController AddTileToCell(CellController cell) //Adding the tile to every cell of the grid
     {
         Vector3 newPos = new Vector3(cell.pos.x, cell.pos.y, 0f);
         TileController newTile = Instantiate(tilePrefab, transform);
-        newTile.transform.localPosition = newPos;
+        newTile.transform.localPosition = cell.transform.localPosition;
         listTiles.Add(newTile);
 
         cell.linkedTile = newTile;
@@ -84,7 +106,7 @@ public class GridController : MonoBehaviour
         return newTile;
     }
 
-    public void SetGridNumber(string level)
+    public void SetGridNumber(string level) //Setting the initial numbers on the grid
     {
         selected_grid_data = Random.Range(0, SudokuData.Instance.sudoku_game[level].Count);
         var data = SudokuData.Instance.sudoku_game[level][selected_grid_data];
@@ -92,7 +114,7 @@ public class GridController : MonoBehaviour
         SetGridSquareData(data);
     }
 
-    private void SetGridSquareData(SudokuData.SudokuBoardData data)
+    private void SetGridSquareData(SudokuData.SudokuBoardData data) //Going through thw whole grid and setting the initial number and the wanted number for each tile
     {
         for (int i = 0; i < mainSceneManager._GridController.listTiles.Count; i++)
         {

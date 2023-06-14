@@ -241,7 +241,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2d15eab9f226f449495304225457aff8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 103e4c4f4d06243279de13a924eb74a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -279,7 +279,7 @@ Transform:
   m_GameObject: {fileID: 6211650303205157368}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.05, y: 0.2, z: 1.05}
+  m_LocalScale: {x: 1, y: 0.2, z: 1}
   m_Children:
   - {fileID: 3599245942368859999}
   - {fileID: 5385417821412517308}
@@ -315,6 +315,7 @@ MonoBehaviour:
   numberTile: {fileID: 6925120032751327808}
   correctNumber: 0
   spriteTile: {fileID: 6404017485043151527}
+  defaultValue: 0
   selectedColorTile: {r: 0.2028302, g: 0.8567179, b: 1, a: 1}
   correctTextColor: {r: 0, g: 0.19666709, b: 0.3962264, a: 1}
   wrongTextColor: {r: 0.8490566, g: 0, b: 0, a: 1}
