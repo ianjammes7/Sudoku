@@ -668,9 +668,8 @@ public class SudokuData : MonoBehaviour
 
     void Start()
     {
-        sudoku_game.Add("easy", SudokuEasyData.getData());
-        //print(sudoku_game["easy"][0].unsolved_Data[0]);
-        sudoku_game.Add("medium", SudokuMediumData.getData());
-        sudoku_game.Add("hard", SudokuHardData.getData());
+        sudoku_game.Add("Easy", SudokuEasyData.getData());
+        sudoku_game.Add("Medium", SudokuMediumData.getData());
+        sudoku_game.Add("Hard", SudokuHardData.getData());
     }
 }

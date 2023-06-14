@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -54,6 +55,16 @@ public class UIManager : MonoBehaviour
             _mainSceneManager = value;
         }
     }
+
+    [Header("Game UI Vars")]
+    public TextMeshProUGUI difficultyGameUIText;
+    public TextMeshProUGUI timeGameUIText;
+    public TextMeshProUGUI scoreGameUIText;
+
+    [Header("Success Screen Vars")]
+    public TextMeshProUGUI difficultyText;
+    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI scoreText;
 
     void Update()
     {

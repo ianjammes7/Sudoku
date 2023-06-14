@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-//using Lofelt.NiceVibrations;
 using UnityEditor;
 using Random = UnityEngine.Random;
 
@@ -97,7 +96,11 @@ public class GridController : MonoBehaviour
     {
         for (int i = 0; i < mainSceneManager._GridController.listTiles.Count; i++)
         {
+            if(data.unsolved_Data[i] != 0)
+                mainSceneManager._GridController.listTiles[i].defaultValue = true;
+
             mainSceneManager._GridController.listTiles[i].SetNumber(data.unsolved_Data[i]);
+            mainSceneManager._GridController.listTiles[i].SetCorrectNumber(data.solved_Data[i]);
         }
     }
 }

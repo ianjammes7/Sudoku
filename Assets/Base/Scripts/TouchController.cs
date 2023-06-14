@@ -65,13 +65,13 @@ public class TouchController : MonoBehaviour
                 {
                     for (int i = 0; i < mainSceneManager._GridController.listTiles.Count; i++)
                     {
-                        if (mainSceneManager._GridController.listTiles[i].spriteTile.color == mainSceneManager._GridController.listTiles[i].selectedColor)
+                        if (mainSceneManager._GridController.listTiles[i].spriteTile.color == mainSceneManager._GridController.listTiles[i].selectedColorTile)
                         {
                             mainSceneManager._GridController.listTiles[i].spriteTile.color = Color.white;
                         }
                     }
                 }
-                touchedTile.spriteTile.color = touchedTile.selectedColor;
+                touchedTile.spriteTile.color = touchedTile.selectedColorTile;
 
 
             }

@@ -9,6 +9,7 @@ public class MainSceneManager : SceneContextManager
     public GridController _GridController;
     public UIManager uiManager;
     public TouchController _touchController;
+    public SolutionController _solutionController;
 
     void Start()
     {
@@ -40,6 +41,8 @@ public class MainSceneManager : SceneContextManager
         gameHasStarted = true;
         _GridController.Init();
         _cameraController.Init();
+
+        uiManager.difficultyGameUIText.text = gameManager.gameModeString.ToString();
     }
 
     public void OnSuccess()
@@ -51,6 +54,10 @@ public class MainSceneManager : SceneContextManager
 
         gameHasStarted = false;
         isVictory = true;
+
+        uiManager.difficultyText.text = gameManager.gameModeString.ToString();
+        //uiManager.timeText.text = 
+        //uiManager.scoreText.text = 
     }
 
     public void OnGameOver()

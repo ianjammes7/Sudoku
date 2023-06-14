@@ -13,21 +13,21 @@ public class MenuSceneManager : MonoBehaviour
     public void OnEasyGameClicked()
     {
         GameManager.Instance._GameMode = GAME_MODE.EASY;
-        GameManager.Instance.gameModeString = "easy";
+        GameManager.Instance.gameModeString = "Easy";
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
     }
 
     public void OnMediumGameClicked()
     {
         GameManager.Instance._GameMode = GAME_MODE.MEDIUM;
-        GameManager.Instance.gameModeString = "medium";
+        GameManager.Instance.gameModeString = "Medium";
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
     }
 
     public void OnHardGameClicked()
     {
         GameManager.Instance._GameMode = GAME_MODE.HARD;
-        GameManager.Instance.gameModeString = "hard";
+        GameManager.Instance.gameModeString = "Hard";
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
     }
 

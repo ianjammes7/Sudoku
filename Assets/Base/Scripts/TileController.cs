@@ -32,9 +32,16 @@ public class TileController : MonoBehaviour
 
     public TextMeshPro numberTile;
 
+    [HideInInspector] public int correctNumber;
+
     public SpriteRenderer spriteTile;
 
-    public Color selectedColor;
+    public bool defaultValue = false;
+
+    [Header("Colors")]
+    public Color selectedColorTile;
+    public Color correctTextColor;
+    public Color wrongTextColor;
 
     public void SetNumber(int num)
     {
@@ -43,5 +50,23 @@ public class TileController : MonoBehaviour
         {
             numberTile.text = " ";
         }
+
+        if (defaultValue)
+            return;
+
+        if (num != correctNumber)
+        {
+            numberTile.color = wrongTextColor;
+            mainSceneManager._solutionController.WrongNumber();
+        }
+        else
+        {
+            numberTile.color = correctTextColor;
+        }
+    }
+
+    public void SetCorrectNumber(int number)
+    {
+        correctNumber = number;
     }
 }
