@@ -8,6 +8,7 @@ public class MainSceneManager : SceneContextManager
     public CameraController _cameraController;
     public GridController _GridController;
     public UIManager uiManager;
+    public TouchController _touchController;
 
     void Start()
     {

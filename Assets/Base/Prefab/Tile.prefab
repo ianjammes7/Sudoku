@@ -311,6 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f7dfd0660d2469ea41cc30399eb08c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeMeshRenderer: {fileID: 0}
   cellParent: {fileID: 0}
   numberTile: {fileID: 6925120032751327808}
+  spriteTile: {fileID: 6404017485043151527}
+  selectedColor: {r: 0.514151, g: 0.9229852, b: 1, a: 1}

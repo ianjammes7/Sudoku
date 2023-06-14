@@ -1,10 +1,8 @@
-﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-public class TileController : MonoBehaviour
+public class NumberButton : MonoBehaviour
 {
     private MainSceneManager _mainSceneManager;
     protected MainSceneManager mainSceneManager
@@ -28,20 +26,12 @@ public class TileController : MonoBehaviour
         }
     }
 
-    public CellController cellParent;
+    public int valueButton;
 
-    public TextMeshPro numberTile;
-
-    public SpriteRenderer spriteTile;
-
-    public Color selectedColor;
-
-    public void SetNumber(int num)
+    public void OnNumberButtonClicked()
     {
-        numberTile.text = num.ToString();
-        if(num == 0)
-        {
-            numberTile.text = " ";
-        }
+        mainSceneManager._touchController.touchedTile.SetNumber(valueButton);
     }
+
+ 
 }
