@@ -121,4 +121,16 @@ public class UIManager : MonoBehaviour
             mainSceneManager.notesModeActive = true;
         }
     }
+
+    public void OnEraseButtonClicked()
+    {
+        if(mainSceneManager._touchController.touchedTile == null || mainSceneManager._touchController.touchedTile.defaultValue) return;
+
+        mainSceneManager._touchController.touchedTile.SetNumber(0);
+        for (int i = 0; i < mainSceneManager._touchController.touchedTile.numbersNotes.Count; i++) //Hiding all the notes of the tile
+        {
+            if(mainSceneManager._touchController.touchedTile.numbersNotes[i].activeSelf)
+                mainSceneManager._touchController.touchedTile.numbersNotes[i].SetActive(false);
+        }
+    }
 }

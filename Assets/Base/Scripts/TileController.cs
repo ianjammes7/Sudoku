@@ -62,7 +62,7 @@ public class TileController : MonoBehaviour
         if (defaultValue)
             return;
 
-        if (num != correctNumber)
+        if (num != correctNumber && num != 0)
         {
             numberTile.color = wrongTextColor;
             mainSceneManager._solutionController.WrongNumber();
