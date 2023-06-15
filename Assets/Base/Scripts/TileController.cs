@@ -28,15 +28,15 @@ public class TileController : MonoBehaviour
         }
     }
 
-    public CellController cellParent;
+    [HideInInspector] public CellController cellParent;
+    [HideInInspector] public int correctNumber;
+    [HideInInspector] public bool defaultValue;
 
     public TextMeshPro numberTile;
 
-    [HideInInspector] public int correctNumber;
-
     public SpriteRenderer spriteTile;
 
-    public bool defaultValue = false;
+    public List<GameObject> numbersNotes = new List<GameObject>();
 
     [Header("Colors")]
     public Color selectedTile;
@@ -47,8 +47,14 @@ public class TileController : MonoBehaviour
 
     public void SetNumber(int num)
     {
+        for (int i = 0; i < numbersNotes.Count; i++) //Hiding all the notes of the tile
+        {
+            if(numbersNotes[i].activeSelf)
+                numbersNotes[i].SetActive(false);
+        }
+        
         numberTile.text = num.ToString();
-        if(num == 0)
+        if(num == 0) //Empty tile if it is a 0
         {
             numberTile.text = " ";
         }
@@ -65,6 +71,14 @@ public class TileController : MonoBehaviour
         {
             numberTile.color = correctTextColor;
         }
+    }
+    
+    public void SetNoteNumber(int num)
+    {
+        if(numbersNotes[num-1].activeSelf)
+            numbersNotes[num-1].SetActive(false);
+        else
+            numbersNotes[num-1].SetActive(true);
     }
 
     public void SetCorrectNumber(int number)

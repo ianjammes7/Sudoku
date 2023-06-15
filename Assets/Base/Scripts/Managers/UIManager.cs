@@ -59,7 +59,6 @@ public class UIManager : MonoBehaviour
     [Header("Game UI Vars")]
     public TextMeshProUGUI difficultyGameUIText;
     public TextMeshProUGUI timeGameUIText;
-    public TextMeshProUGUI scoreGameUIText;
 
     [Header("Pause UI Vars")]
     public GameObject PauseUI;
@@ -68,7 +67,10 @@ public class UIManager : MonoBehaviour
     [Header("Success Screen Vars")]
     public TextMeshProUGUI difficultyText;
     public TextMeshProUGUI timeText;
-    public TextMeshProUGUI scoreText;
+    
+    [Header("Notes Vars")]
+    public GameObject onImage;
+    public GameObject offImage;
 
     public void OnStartButtonClicked()
     {
@@ -102,5 +104,21 @@ public class UIManager : MonoBehaviour
     {
         mainSceneManager.pausedGame = false;
         PauseUI.SetActive(false);
+    }
+
+    public void OnNotesButtonClicked()
+    {
+        if (mainSceneManager.notesModeActive)
+        {
+            offImage.SetActive(true);
+            onImage.SetActive(false);
+            mainSceneManager.notesModeActive = false;
+        }
+        else
+        {
+            onImage.SetActive(true);
+            offImage.SetActive(false);
+            mainSceneManager.notesModeActive = true;
+        }
     }
 }

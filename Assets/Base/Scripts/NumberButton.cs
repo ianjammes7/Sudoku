@@ -30,8 +30,16 @@ public class NumberButton : MonoBehaviour
 
     public void OnNumberButtonClicked()
     {
-        if(mainSceneManager._touchController.touchedTile.defaultValue == false)
-            mainSceneManager._touchController.touchedTile.SetNumber(valueButton);
+        if(mainSceneManager.notesModeActive == false)
+        {
+            if (mainSceneManager._touchController.touchedTile.defaultValue == false)
+                mainSceneManager._touchController.touchedTile.SetNumber(valueButton);
+        }
+        else
+        {
+            if (mainSceneManager._touchController.touchedTile.defaultValue == false)
+                mainSceneManager._touchController.touchedTile.SetNoteNumber(valueButton);
+        }
     }
 
  

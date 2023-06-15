@@ -14,6 +14,7 @@ public class MainSceneManager : SceneContextManager
     public GridIndicator _gridIndicator;
 
     [HideInInspector] public bool pausedGame = false;
+    public bool notesModeActive;
 
     void Start()
     {
