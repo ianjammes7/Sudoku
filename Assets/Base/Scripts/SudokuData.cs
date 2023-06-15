@@ -651,8 +651,8 @@ public class SudokuData : MonoBehaviour
 
         public SudokuBoardData(int[] unsolved, int[] solved) : this()
         {
-            this.unsolved_Data = unsolved;
-            this.solved_Data = solved;
+            unsolved_Data = unsolved;
+            solved_Data = solved;
         }
     };
 

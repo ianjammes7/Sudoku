@@ -11,6 +11,7 @@ public class MainSceneManager : SceneContextManager
     public TouchController _touchController;
     public SolutionController _solutionController;
     public Timer _Timer;
+    public GridIndicator _gridIndicator;
 
     [HideInInspector] public bool pausedGame = false;
 
@@ -44,6 +45,7 @@ public class MainSceneManager : SceneContextManager
         gameHasStarted = true;
         _GridController.Init();
         _cameraController.Init();
+        _gridIndicator.Init();
 
         uiManager.difficultyGameUIText.text = gameManager.gameModeString.ToString();
     }

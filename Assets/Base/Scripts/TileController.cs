@@ -39,7 +39,9 @@ public class TileController : MonoBehaviour
     public bool defaultValue = false;
 
     [Header("Colors")]
-    public Color selectedColorTile;
+    public Color selectedTile;
+    public Color sameLineColumnTile;
+    public Color sameNumber;
     public Color correctTextColor;
     public Color wrongTextColor;
 

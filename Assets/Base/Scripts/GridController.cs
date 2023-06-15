@@ -65,7 +65,7 @@ public class GridController : MonoBehaviour
             for (int x = 0; x < gridSize.x; x++)
             {
                 CellController newCell = Instantiate(cellPrefab, this.transform);
-                newCell.pos = new Vector2Int(x, y);
+                newCell.pos = new Vector2Int(x, y-1);
                 Vector3 newPos = new Vector3(newCell.pos.x + (gap_number.x * squareGap), newCell.pos.y - (gap_number.y * squareGap), 0f);
 
                 if(x > 0 && x%3 == 0)
@@ -125,4 +125,5 @@ public class GridController : MonoBehaviour
             mainSceneManager._GridController.listTiles[i].SetCorrectNumber(data.solved_Data[i]);
         }
     }
+
 }
