@@ -126,4 +126,17 @@ public class GridController : MonoBehaviour
         }
     }
 
+    public void CheckForCompleteSudoku()
+    {
+        for (int i = 0; i < listTiles.Count; i++)
+        {
+            if (listTiles[i].numberTile.text == " ") //if there is at least an empty tile
+            {
+                return;
+            }
+        }
+        
+        Invoke(nameof(mainSceneManager.OnSuccess),0.5f);
+    }
+
 }

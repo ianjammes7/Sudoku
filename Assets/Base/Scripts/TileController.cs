@@ -71,6 +71,8 @@ public class TileController : MonoBehaviour
         {
             numberTile.color = correctTextColor;
         }
+
+        mainSceneManager._GridController.CheckForCompleteSudoku();
     }
     
     public void SetNoteNumber(int num)
