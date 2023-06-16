@@ -33,7 +33,7 @@ public class SolutionController : MonoBehaviour
     public Color redCross;
 
     private int lives = 3;
-    private int counterErrors = 0;
+    public int counterErrors;
 
     public void WrongNumber()
     {

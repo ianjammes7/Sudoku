@@ -28,7 +28,7 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public float timeValue = 0;
+    public float timeValue;
 
     private void Update()
     {

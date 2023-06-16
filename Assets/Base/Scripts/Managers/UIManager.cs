@@ -74,9 +74,9 @@ public class UIManager : MonoBehaviour
     public GameObject offImage;
 
     [Header("Hint Vars")] 
-    private int counterHint = 3;
     public Button hintButton;
     public TextMeshProUGUI counterText;
+    public int counterHint = 3;
 
     public void OnStartButtonClicked()
     {
@@ -96,6 +96,9 @@ public class UIManager : MonoBehaviour
 
     public void OnExitButtonClicked()
     {
+        mainSceneManager._GridController.SaveGame();
+        PlayerPrefs.SetInt("savedGame",1);
+        GameManager.Instance.savedGame = PlayerPrefs.GetInt("savedGame");
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 

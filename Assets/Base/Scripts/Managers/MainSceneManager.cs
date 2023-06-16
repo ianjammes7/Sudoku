@@ -16,6 +16,10 @@ public class MainSceneManager : SceneContextManager
     [HideInInspector] public bool pausedGame = false;
     public bool notesModeActive;
 
+    [Header("Saving Vars")] 
+    public List<int> savedIntList = new List<int>();
+
+
     void Start()
     {
         base.Start();
@@ -43,12 +47,12 @@ public class MainSceneManager : SceneContextManager
             uiManager.OnStartButtonClicked();
         }
         
+        uiManager.difficultyGameUIText.text = gameManager.gameModeString;
+
         gameHasStarted = true;
         _GridController.Init();
         _cameraController.Init();
         _gridIndicator.Init();
-
-        uiManager.difficultyGameUIText.text = gameManager.gameModeString.ToString();
     }
 
     private void Update()
@@ -68,6 +72,8 @@ public class MainSceneManager : SceneContextManager
 
         gameHasStarted = false;
         isVictory = true;
+        
+        PlayerPrefs.SetInt("savedGame",0);
 
         uiManager.difficultyText.text = gameManager.gameModeString.ToString();
         //uiManager.timeText.text = 
@@ -83,5 +89,7 @@ public class MainSceneManager : SceneContextManager
 
         gameHasStarted = false;
         isVictory = false;
+        
+        PlayerPrefs.SetInt("savedGame",0);
     }
 }

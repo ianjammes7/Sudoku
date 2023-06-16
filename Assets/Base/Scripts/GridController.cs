@@ -50,7 +50,14 @@ public class GridController : MonoBehaviour
         transform.position = new Vector3(-((gridSize.x - 1) / 2f), 0f, -((gridSize.y - 1) / 2f));
 
         CreateGrid();
-        SetGridNumber(GameManager.Instance.gameModeString);
+        if(GameManager.Instance.savedGame == 0)
+        {
+            SetGridNumber(GameManager.Instance.gameModeString);
+        }        
+        else //Adding saved numbers, errors, timer, difficulty level
+        {
+            RestoreAllSavedVars();
+        }
     }
 
     public float squareGap = 0.1f;
@@ -138,5 +145,102 @@ public class GridController : MonoBehaviour
         
         this.Invoke(mainSceneManager.OnSuccess,0.5f);
     }
+    
 
+    //Save functions-------------------------------------
+
+    private void RestoreAllSavedVars()
+    {
+        AddSavedNumbersToGrid();
+        print(PlayerPrefs.GetString("gameDifficulty"));
+
+        mainSceneManager.uiManager.difficultyGameUIText.text = PlayerPrefs.GetString("gameDifficulty");
+        mainSceneManager._Timer.timeValue += PlayerPrefs.GetFloat("timer");
+            
+        //Hints
+        mainSceneManager.uiManager.counterHint = PlayerPrefs.GetInt("numberHint");
+        mainSceneManager.uiManager.counterText.text = mainSceneManager.uiManager.counterHint.ToString();
+        if (mainSceneManager.uiManager.counterHint == 0)
+            mainSceneManager.uiManager.hintButton.interactable = false;
+            
+        //Errors count
+        if (mainSceneManager._solutionController.counterErrors != PlayerPrefs.GetInt("numberErrors"))
+        {
+            mainSceneManager._solutionController.counterErrors = 0;
+            mainSceneManager._solutionController.counterErrors = PlayerPrefs.GetInt("numberErrors");
+            for (int i = 0; i < mainSceneManager._solutionController.counterErrors; i++)
+            {
+                mainSceneManager._solutionController.imageCrosses[i].color = mainSceneManager._solutionController.redCross;
+            }
+        }
+    }
+    
+    public void SaveGame()
+    {
+        switch (GameManager.Instance._GameMode)
+        {
+            //Saving the difficulty of the level
+            case GAME_MODE.EASY:
+                PlayerPrefs.SetString("gameDifficulty","Easy");
+                break;
+            case GAME_MODE.MEDIUM:
+                PlayerPrefs.SetString("gameDifficulty","Medium");
+                break;
+            case GAME_MODE.HARD:
+                PlayerPrefs.SetString("gameDifficulty","Hard");
+                break;
+        }
+        
+        for (int i = 0; i < listTiles.Count; i++)
+        {
+            //Saving to the list numbers in order in the grid
+            if(listTiles[i].numberTile.text != " ")
+                PlayerPrefs.SetInt("savedIntList_" + i,int.Parse(listTiles[i].numberTile.text));
+            else
+                PlayerPrefs.SetInt("savedIntList_" + i,0);
+
+            //Saving to the list correct numbers in order in the grid
+            PlayerPrefs.SetInt("savedCorrectNumberList_" + i,listTiles[i].correctNumber);
+            
+            //Saving to the list if they are default or not
+            if(listTiles[i].defaultValue)
+                PlayerPrefs.SetInt("listDefaultValue_" + i,1);
+            else
+                PlayerPrefs.SetInt("listDefaultValue_" + i,0);
+            
+            //Saving number hints left
+            PlayerPrefs.SetInt("numberHint",mainSceneManager.uiManager.counterHint);
+            
+            //Saving num errors
+            PlayerPrefs.SetInt("numberErrors",mainSceneManager._solutionController.counterErrors);
+            
+            //Saving the timer
+            PlayerPrefs.SetFloat("timer",mainSceneManager._Timer.timeValue);
+        }
+
+        mainSceneManager._touchController.touchedTile = null;
+        PlayerPrefs.SetInt("savedGame",1);
+    }
+
+    private void AddSavedNumbersToGrid()
+    {
+        for (int i = 0; i < mainSceneManager._GridController.listTiles.Count; i++)
+        {
+            int intToAdd = PlayerPrefs.GetInt("savedIntList_" + i);
+            int correctNumber = PlayerPrefs.GetInt("savedCorrectNumberList_" + i);
+            int isDefaultValue = PlayerPrefs.GetInt("listDefaultValue_" + i);
+            
+            if(isDefaultValue == 1)
+                mainSceneManager._GridController.listTiles[i].defaultValue = true;
+
+            mainSceneManager._GridController.listTiles[i].SetCorrectNumber(correctNumber);
+            mainSceneManager._GridController.listTiles[i].SetNumber(intToAdd);
+            mainSceneManager._GridController.listTiles[i].spriteTile.color = Color.white;
+        }
+    }
+    
+    private void OnApplicationQuit()
+    {
+        SaveGame();    
+    }
 }

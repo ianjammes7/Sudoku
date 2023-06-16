@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class TileController : MonoBehaviour
 {
@@ -29,8 +28,8 @@ public class TileController : MonoBehaviour
     }
 
     [HideInInspector] public CellController cellParent;
-    [HideInInspector] public int correctNumber;
-    [HideInInspector] public bool defaultValue;
+     public int correctNumber;
+     public bool defaultValue;
 
     public TextMeshPro numberTile;
 

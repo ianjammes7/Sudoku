@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Modes")]
     [HideInInspector] public GAME_MODE _GameMode;
     [HideInInspector] public string gameModeString;
+    [HideInInspector] public int savedGame;
 
     //Level
     public LevelManager _LevelManager;
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
 
+        savedGame = PlayerPrefs.GetInt("savedGame", 0);
     }
 
     public static GameManager Instance {
