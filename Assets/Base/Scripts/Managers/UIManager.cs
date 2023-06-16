@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -72,6 +73,11 @@ public class UIManager : MonoBehaviour
     public GameObject onImage;
     public GameObject offImage;
 
+    [Header("Hint Vars")] 
+    private int counterHint = 3;
+    public Button hintButton;
+    public TextMeshProUGUI counterText;
+
     public void OnStartButtonClicked()
     {
         GameUI.SetActive(true);
@@ -132,5 +138,31 @@ public class UIManager : MonoBehaviour
             if(mainSceneManager._touchController.touchedTile.numbersNotes[i].activeSelf)
                 mainSceneManager._touchController.touchedTile.numbersNotes[i].SetActive(false);
         }
+    }
+
+    public void OnHintButtonClicked()
+    {
+        counterHint--;
+        if(counterHint == 0)
+        {
+            hintButton.interactable = false;
+        }
+        counterText.text = counterHint.ToString();
+
+        int randomInt;
+        
+        randomInt = Random.Range(0, mainSceneManager._GridController.listTiles.Count);
+
+        while (mainSceneManager._GridController.listTiles[randomInt].numberTile.text != " ")
+        {
+            randomInt = Random.Range(0, mainSceneManager._GridController.listTiles.Count);
+        }
+        
+        mainSceneManager._GridController.listTiles[randomInt].SetNumber(mainSceneManager._GridController.listTiles[randomInt].correctNumber);
+        mainSceneManager._touchController.touchedTile = mainSceneManager._GridController.listTiles[randomInt];
+        
+        mainSceneManager._gridIndicator.SelectAllLineColumn(mainSceneManager._touchController.touchedTile.cellParent);
+        mainSceneManager._gridIndicator.SelectAllSquare(mainSceneManager._touchController.touchedTile.cellParent);
+        mainSceneManager._gridIndicator.HighlightSameNumberOnGrid(mainSceneManager._touchController.touchedTile);
     }
 }

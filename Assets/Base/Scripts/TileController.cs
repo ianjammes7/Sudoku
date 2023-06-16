@@ -70,6 +70,7 @@ public class TileController : MonoBehaviour
         else
         {
             numberTile.color = correctTextColor;
+            mainSceneManager._gridIndicator.HighlightSameNumberOnGrid(this);
         }
 
         mainSceneManager._GridController.CheckForCompleteSudoku();
