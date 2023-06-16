@@ -136,7 +136,7 @@ public class GridController : MonoBehaviour
             }
         }
         
-        Invoke(nameof(mainSceneManager.OnSuccess),0.5f);
+        this.Invoke(mainSceneManager.OnSuccess,0.5f);
     }
 
 }
