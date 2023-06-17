@@ -152,7 +152,6 @@ public class GridController : MonoBehaviour
     private void RestoreAllSavedVars()
     {
         AddSavedNumbersToGrid();
-        print(PlayerPrefs.GetString("gameDifficulty"));
 
         mainSceneManager.uiManager.difficultyGameUIText.text = PlayerPrefs.GetString("gameDifficulty");
         mainSceneManager._Timer.timeValue += PlayerPrefs.GetFloat("timer");

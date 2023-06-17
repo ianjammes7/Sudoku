@@ -66,12 +66,14 @@ public class TileController : MonoBehaviour
             numberTile.color = wrongTextColor;
             mainSceneManager._solutionController.WrongNumber();
         }
-        else
+        else if(num != 0)
         {
             numberTile.color = correctTextColor;
             mainSceneManager._gridIndicator.HighlightSameNumberOnGrid(this);
+            defaultValue = true;
         }
 
+        CheckIfNumberCompleted(num);
         mainSceneManager._GridController.CheckForCompleteSudoku();
     }
     
@@ -86,5 +88,23 @@ public class TileController : MonoBehaviour
     public void SetCorrectNumber(int number)
     {
         correctNumber = number;
+    }
+    
+    public void CheckIfNumberCompleted(int number)
+    {
+        int counter = 0;
+        
+        for (int i = 0; i < mainSceneManager._GridController.listTiles.Count; i++)
+        {
+            if (mainSceneManager._GridController.listTiles[i].numberTile.text == number.ToString())
+            {
+                counter++;
+            }
+        }
+
+        if (counter == 9)
+        {
+            mainSceneManager.uiManager.listNumbersGameObjects[number-1].SetActive(false);
+        }
     }
 }

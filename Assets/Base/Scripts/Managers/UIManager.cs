@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-
     //UI
     public GameObject GameUI;
     public GameObject SuccesUI;
@@ -56,6 +55,9 @@ public class UIManager : MonoBehaviour
             _mainSceneManager = value;
         }
     }
+
+    [Header("Numbers UI")] 
+    public List<GameObject> listNumbersGameObjects = new List<GameObject>();
 
     [Header("Game UI Vars")]
     public TextMeshProUGUI difficultyGameUIText;

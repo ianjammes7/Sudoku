@@ -164,7 +164,6 @@ public class GridIndicator : MonoBehaviour
     {
         for (int i = 0; i < mainSceneManager._GridController.listTiles.Count; i++)
         {
-
             if (mainSceneManager._GridController.listTiles[i].numberTile.text == touchedTile.numberTile.text && touchedTile.numberTile.text != " " && mainSceneManager._GridController.listTiles[i] != touchedTile)
             {
                 mainSceneManager._GridController.listTiles[i].spriteTile.color = mainSceneManager._GridController.listTiles[i].sameNumber;
