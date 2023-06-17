@@ -58,11 +58,13 @@ public class GridController : MonoBehaviour
         {
             RestoreAllSavedVars();
         }
+
+        StartCoroutine(AnimBeginning());
     }
 
     public float squareGap = 0.1f;
 
-    public void CreateGrid(String gridLayout = "none")
+    public void CreateGrid()
     {
         Vector2 gap_number = new Vector2(0,1);
         bool rowMoved = false;
@@ -99,7 +101,7 @@ public class GridController : MonoBehaviour
         }
     }
 
-    public TileController AddTileToCell(CellController cell) //Adding the tile to every cell of the grid
+    public void AddTileToCell(CellController cell) //Adding the tile to every cell of the grid
     {
         Vector3 newPos = new Vector3(cell.pos.x, cell.pos.y, 0f);
         TileController newTile = Instantiate(tilePrefab, transform);
@@ -109,8 +111,6 @@ public class GridController : MonoBehaviour
         cell.linkedTile = newTile;
         cell.occupied = true;
         newTile.cellParent = cell;
-
-        return newTile;
     }
 
     public void SetGridNumber(string level) //Setting the initial numbers on the grid
@@ -130,6 +130,7 @@ public class GridController : MonoBehaviour
 
             mainSceneManager._GridController.listTiles[i].SetNumber(data.unsolved_Data[i]);
             mainSceneManager._GridController.listTiles[i].SetCorrectNumber(data.solved_Data[i]);
+            mainSceneManager._GridController.listTiles[i].numberTile.enabled = false;
         }
     }
 
@@ -144,6 +145,21 @@ public class GridController : MonoBehaviour
         }
         
         this.Invoke(mainSceneManager.OnSuccess,0.5f);
+    }
+
+    IEnumerator AnimBeginning()
+    {
+        for (int y = mainSceneManager._GridController.gridSize.y; y > 0; y--)
+        {
+            for (int x = 0; x < mainSceneManager._GridController.gridSize.x; x++)
+            {
+                CellController currentCell = mainSceneManager._GridController.cells[x + "," + y];
+                currentCell.linkedTile.spriteTile.DOColor(currentCell.linkedTile.selectedTile,0.1f).SetLoops(2,LoopType.Yoyo);
+                currentCell.linkedTile.numberTile.enabled = true;
+            }
+            
+            yield return new WaitForSeconds(0.05f);
+        }
     }
     
 

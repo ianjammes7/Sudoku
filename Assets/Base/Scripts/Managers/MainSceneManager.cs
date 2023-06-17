@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Lofelt.NiceVibrations;
 using UnityEngine;
 
 public class MainSceneManager : SceneContextManager
@@ -75,7 +76,9 @@ public class MainSceneManager : SceneContextManager
         
         PlayerPrefs.SetInt("savedGame",0);
 
-        uiManager.difficultyText.text = gameManager.gameModeString.ToString();
+        uiManager.difficultyText.text = gameManager.gameModeString;
+        HapticPatterns.PlayPreset(HapticPatterns.PresetType.Success);
+
         //uiManager.timeText.text = 
         //uiManager.scoreText.text = 
     }
@@ -91,5 +94,7 @@ public class MainSceneManager : SceneContextManager
         isVictory = false;
         
         PlayerPrefs.SetInt("savedGame",0);
+        
+        HapticPatterns.PlayPreset(HapticPatterns.PresetType.Failure);
     }
 }

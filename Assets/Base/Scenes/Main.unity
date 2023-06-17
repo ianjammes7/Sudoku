@@ -1271,7 +1271,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1745679647}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnExitButtonClicked
+        m_MethodName: OnRetryButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3605,7 +3605,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: 50, y: 19.3}
+  m_SizeDelta: {x: 66, y: 19.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1392263794
 MonoBehaviour:
@@ -3627,7 +3627,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Easy
+  m_text: Medium
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 73003e228c36b4647ad197423ff6d130, type: 2}
   m_sharedMaterial: {fileID: -6388731109811415349, guid: 73003e228c36b4647ad197423ff6d130, type: 2}
@@ -4901,8 +4901,8 @@ MonoBehaviour:
   timePauseUIText: {fileID: 1303479513}
   difficultyText: {fileID: 2041962918}
   timeText: {fileID: 127929987}
-  onImage: {fileID: 1510824172}
-  offImage: {fileID: 78630310}
+  onImage: {fileID: 78630310}
+  offImage: {fileID: 1510824172}
   hintButton: {fileID: 2073097280}
   counterText: {fileID: 1913196457}
   counterHint: 3

@@ -95,6 +95,13 @@ public class UIManager : MonoBehaviour
 
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
+    
+    public void OnRetryButtonClicked()
+    {
+        PlayerPrefs.SetInt("savedGame",0);
+        GameManager.Instance.savedGame = PlayerPrefs.GetInt("savedGame");
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+    }
 
     public void OnExitButtonClicked()
     {
