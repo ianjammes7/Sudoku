@@ -172,13 +172,22 @@ public class GridController : MonoBehaviour
                 mainSceneManager._solutionController.imageCrosses[i].color = mainSceneManager._solutionController.redCross;
             }
         }
+        
+        //Numbers UI
+        for (int i = 0; i < mainSceneManager.uiManager.listNumbersGameObjects.Count; i++)
+        {
+            if (PlayerPrefs.GetInt("numberUIActive_" + i) == 0)
+            {
+                mainSceneManager.uiManager.listNumbersGameObjects[i].SetActive(false);
+            }
+        }
     }
     
     public void SaveGame()
     {
+        //Saving the difficulty of the level
         switch (GameManager.Instance._GameMode)
         {
-            //Saving the difficulty of the level
             case GAME_MODE.EASY:
                 PlayerPrefs.SetString("gameDifficulty","Easy");
                 break;
@@ -188,6 +197,15 @@ public class GridController : MonoBehaviour
             case GAME_MODE.HARD:
                 PlayerPrefs.SetString("gameDifficulty","Hard");
                 break;
+        }
+        
+        //Saving which numbers are active
+        for (int i = 0; i < mainSceneManager.uiManager.listNumbersGameObjects.Count; i++)
+        {
+            if(mainSceneManager.uiManager.listNumbersGameObjects[i].activeSelf)
+                PlayerPrefs.SetInt("numberUIActive_" + i,1);
+            else
+                PlayerPrefs.SetInt("numberUIActive_" + i,0);
         }
         
         for (int i = 0; i < listTiles.Count; i++)
