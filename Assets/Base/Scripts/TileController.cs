@@ -65,7 +65,7 @@ public class TileController : MonoBehaviour
             return;
 
         HapticPatterns.PlayPreset(HapticPatterns.PresetType.LightImpact);
-
+        
         if (num != correctNumber && num != 0)
         {
             numberTile.color = wrongTextColor;
@@ -80,11 +80,14 @@ public class TileController : MonoBehaviour
                 StartCoroutine(CheckIfLineCompleted(mainSceneManager._touchController.touchedTile.cellParent));
                 StartCoroutine(CheckIfColumnCompleted(mainSceneManager._touchController.touchedTile.cellParent));
                 CheckIfSquareCompleted(mainSceneManager._touchController.touchedTile.cellParent);
+                CheckIfNumberCompleted(num);
             }            
             defaultValue = true;
         }
 
-        CheckIfNumberCompleted(num);
+        if(mainSceneManager._touchController.touchedTile != null)
+            mainSceneManager._touchController.touchedTile.spriteTile.color = selectedTile;
+
         mainSceneManager._GridController.CheckForCompleteSudoku();
     }
     

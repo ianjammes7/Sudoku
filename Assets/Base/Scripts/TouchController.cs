@@ -28,20 +28,16 @@ public class TouchController : MonoBehaviour
     }
 
     public TileController touchedTile;
-    public TileController lastTouchedTile;
-
 
     protected virtual void Start()
     {
         OnDisable();
         LeanTouch.OnFingerDown += OnFingerDown;
-        LeanTouch.OnFingerUp += OnFingerUp;
     }
 
     void OnDisable()
     {
         LeanTouch.OnFingerDown -= OnFingerDown;
-        LeanTouch.OnFingerUp -= OnFingerUp;
     }
 
     void OnFingerDown(LeanFinger finger)
@@ -55,9 +51,6 @@ public class TouchController : MonoBehaviour
         {
             if (raycastHit.collider.gameObject.layer == 6) //clicking on a tile
             {
-                if (touchedTile != null) //Storing last touched tile
-                    lastTouchedTile = touchedTile;
-
                 touchedTile = raycastHit.collider.GetComponent<TileController>();
 
                 mainSceneManager._gridIndicator.SelectAllLineColumn(touchedTile.cellParent);
@@ -65,11 +58,5 @@ public class TouchController : MonoBehaviour
                 mainSceneManager._gridIndicator.HighlightSameNumberOnGrid(touchedTile);
             }
         }
-    }
-
-    void OnFingerUp(LeanFinger finger)
-    {
-        if (mainSceneManager.isVictory || mainSceneManager.gameHasStarted == false) return;
-        //touchedTile = null;
     }
 }

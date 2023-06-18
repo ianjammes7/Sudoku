@@ -17,9 +17,7 @@ public class MainSceneManager : SceneContextManager
     [HideInInspector] public bool pausedGame = false;
     public bool notesModeActive;
 
-    [Header("Saving Vars")] 
-    public List<int> savedIntList = new List<int>();
-
+    public ParticleSystem confettiFX;
 
     void Start()
     {
@@ -71,6 +69,8 @@ public class MainSceneManager : SceneContextManager
         if (uiManager.SuccesUI != null)
             uiManager.SuccesUI.SetActive(true);
 
+        confettiFX.Play();
+        
         gameHasStarted = false;
         isVictory = true;
         
@@ -78,9 +78,6 @@ public class MainSceneManager : SceneContextManager
 
         uiManager.difficultyText.text = gameManager.gameModeString;
         HapticPatterns.PlayPreset(HapticPatterns.PresetType.Success);
-
-        //uiManager.timeText.text = 
-        //uiManager.scoreText.text = 
     }
 
     public void OnGameOver()

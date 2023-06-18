@@ -32,7 +32,7 @@ public class SolutionController : MonoBehaviour
     public List<Image> imageCrosses = new List<Image>();
     public Color redCross;
 
-    private int lives = 3;
+    public int lives = 3;
     public int counterErrors;
 
     public void WrongNumber()

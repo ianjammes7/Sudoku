@@ -50,6 +50,7 @@ public class GridController : MonoBehaviour
         transform.position = new Vector3(-((gridSize.x - 1) / 2f), 0f, -((gridSize.y - 1) / 2f));
 
         CreateGrid();
+        
         if(GameManager.Instance.savedGame == 0)
         {
             SetGridNumber(GameManager.Instance.gameModeString);

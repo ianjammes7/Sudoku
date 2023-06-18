@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+//All the grid for each difficulty
 public class SudokuEasyData : MonoBehaviour
 {
     public static List<SudokuData.SudokuBoardData> getData()
@@ -656,6 +657,7 @@ public class SudokuData : MonoBehaviour
         }
     };
 
+    //Dictionary containing the list of the levels for each difficulty
     public Dictionary<string, List<SudokuBoardData>> sudoku_game = new Dictionary<string,List<SudokuBoardData>>();
 
     private void Awake()

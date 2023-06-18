@@ -96,7 +96,7 @@ public class GridIndicator : MonoBehaviour
         }
     }
 
-    public void SelectAllSquare(CellController touchedCell)
+    public void SelectAllSquare(CellController touchedCell) //Color cells that are in the square as the touched
     {
         if (listPosFirstSquare.Contains(touchedCell.pos))
         {
@@ -134,7 +134,7 @@ public class GridIndicator : MonoBehaviour
         {
             CheckIfCellInSquare(listPosNinthSquare,touchedCell);
         }
-    } //Color cells that are in the square as the touched
+    } 
     
     private void CheckIfCellInSquare(List<Vector2> listPos, CellController touchedCell) //Check for a given list if position of touched cell is in it
     {
