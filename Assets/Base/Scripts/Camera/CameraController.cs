@@ -68,7 +68,13 @@ public class CameraController : MonoBehaviour
             {
                 float unitsPerPixel = orthoSceneWidthIphone / Screen.width;
 
+#if UNITY_IPHONE
                 float desiredHalfHeight = 0.5f * unitsPerPixel * Screen.height;
+#endif
+#if UNITY_ANDROID
+                
+                float desiredHalfHeight = 0.5f * (unitsPerPixel*1.05f) * Screen.height;
+#endif
 
                 _camera.orthographicSize = desiredHalfHeight;
             }
@@ -90,19 +96,20 @@ public class CameraController : MonoBehaviour
         orthoSceneWidthIpad = defaultOrthoSceneWidthIpad / 6f * mainSceneManager._GridController.gridSize.y;
 
         float aspectRatio = Mathf.Round((float)Mathf.Max(Screen.width, Screen.height) / Mathf.Min(Screen.width, Screen.height) * 10f) / 10f;
-        if (aspectRatio >= 1.7f && aspectRatio <= 1.8f)
+        if (aspectRatio >= 1.7f && aspectRatio <= 1.8f && Utility.GetDeviceType() != ENUM_Device_Type.Phone)
         {
+            print("hola");
             orthoSceneWidthIphone += 0.5f;
             orthoSceneWidthIpad += 0.5f;
         }
-
-        if (GameManager.Instance._currentLevel == 0 || GameManager.Instance._currentLevel == 1)
+        else if(Utility.GetDeviceType() == ENUM_Device_Type.Phone && aspectRatio >= 1.7f && aspectRatio <= 1.8f)
         {
-            /*
-            Camera.main.GetComponent<CameraController>().orthoSceneWidthIphone = 4f;
-            Camera.main.GetComponent<CameraController>().orthoSceneWidthIpad = 5f;
-            Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, -2.1f, Camera.main.transform.position.z);
-        */
+#if UNITY_ANDROID
+            print("hola2");
+            orthoSceneWidthIphone += 1.5f;
+#endif  
         }
+        
+        print(aspectRatio);
     }
 }

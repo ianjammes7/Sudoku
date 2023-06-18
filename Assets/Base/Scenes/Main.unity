@@ -4490,7 +4490,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchedTile: {fileID: 0}
-  lastTouchedTile: {fileID: 0}
 --- !u!114 &1623363173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4508,6 +4507,7 @@ MonoBehaviour:
   - {fileID: 1729285399}
   - {fileID: 1375587681}
   redCross: {r: 1, g: 0, b: 0, a: 1}
+  lives: 3
   counterErrors: 0
 --- !u!114 &1623363174
 MonoBehaviour:
