@@ -242,6 +242,12 @@ public class GridController : MonoBehaviour
             else
                 PlayerPrefs.SetInt("listDefaultValue_" + i,0);
             
+            //Saving to the list color of the number
+            if(listTiles[i].numberTile.color == listTiles[i].correctTextColor)
+                PlayerPrefs.SetInt("hasCorrectTextColor_" + i,1);
+            else
+                PlayerPrefs.SetInt("hasCorrectTextColor_" + i,0);
+            
             //Saving number hints left
             PlayerPrefs.SetInt("numberHint",mainSceneManager.uiManager.counterHint);
             
@@ -263,9 +269,17 @@ public class GridController : MonoBehaviour
             int intToAdd = PlayerPrefs.GetInt("savedIntList_" + i);
             int correctNumber = PlayerPrefs.GetInt("savedCorrectNumberList_" + i);
             int isDefaultValue = PlayerPrefs.GetInt("listDefaultValue_" + i);
+            int hasCorrectTextColor = PlayerPrefs.GetInt("hasCorrectTextColor_" + i);
             
             if(isDefaultValue == 1)
+            {
                 mainSceneManager._GridController.listTiles[i].defaultValue = true;
+            }
+
+            if (hasCorrectTextColor == 1)
+            {
+                mainSceneManager._GridController.listTiles[i].numberTile.color = mainSceneManager._GridController.listTiles[i].correctTextColor;
+            }
 
             mainSceneManager._GridController.listTiles[i].SetCorrectNumber(correctNumber);
             mainSceneManager._GridController.listTiles[i].SetNumber(intToAdd);
