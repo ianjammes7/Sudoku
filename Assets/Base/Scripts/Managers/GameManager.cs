@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int savedGame;
 
     //Level
-    public LevelManager _LevelManager;
     public int _currentLevel;
     public int levelToPlay;
     

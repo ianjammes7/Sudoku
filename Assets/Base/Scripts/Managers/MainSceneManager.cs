@@ -23,14 +23,14 @@ public class MainSceneManager : SceneContextManager
     {
         base.Start();
 
-        if (gameManager._LevelManager != null)
+        /*if (gameManager._LevelManager != null)
         {
             long levelCount = gameManager._LevelManager.listLevels.Count;
             if (gameManager.levelToPlay > levelCount - 1)
             {
                 gameManager.levelToPlay = 0;
             }
-        }
+        }*/
 
         Init();
     }

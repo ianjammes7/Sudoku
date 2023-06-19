@@ -98,18 +98,14 @@ public class CameraController : MonoBehaviour
         float aspectRatio = Mathf.Round((float)Mathf.Max(Screen.width, Screen.height) / Mathf.Min(Screen.width, Screen.height) * 10f) / 10f;
         if (aspectRatio >= 1.7f && aspectRatio <= 1.8f && Utility.GetDeviceType() != ENUM_Device_Type.Phone)
         {
-            print("hola");
             orthoSceneWidthIphone += 0.5f;
             orthoSceneWidthIpad += 0.5f;
         }
         else if(Utility.GetDeviceType() == ENUM_Device_Type.Phone && aspectRatio >= 1.7f && aspectRatio <= 1.8f)
         {
 #if UNITY_ANDROID
-            print("hola2");
             orthoSceneWidthIphone += 1.5f;
 #endif  
         }
-        
-        print(aspectRatio);
     }
 }
